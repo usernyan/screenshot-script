@@ -1,0 +1,35 @@
+#!/bin/sh -e
+#dependencies:
+#	shotgun
+#	hacksaw
+#	xclip
+
+#TODO:
+#	-f		Fullscreen, take a screenshot of the entire screen
+#	-s		Save to file instead of the clipboard
+#	-r		Reuse previous rectangle selection.
+#where to save screenshots on linux? what format?
+#What to do for multiple monitors?
+
+F_OPT=0
+
+while getopts "hf" OPTION; do
+	case $OPTION in
+		h) #display help
+			echo "Not implemented yet"
+			exit;;
+		f)
+			F_OPT=1;;
+		\?) #invalid options
+			echo "Error: invalid option: " $OPTION
+			exit;;
+	esac
+done
+
+if [ $F_OPT -eq 0 ];
+	selection=$(hacksaw -f "-i %i -g %g" &> /dev/null) || exit 0;
+else
+	selection="";
+fi
+
+shotgun $selection - | xclip -t 'image/png' -selection clipboard
