@@ -5,11 +5,12 @@
 #	xclip
 
 #TODO:
-#	-f		Fullscreen, take a screenshot of the entire screen
+#	-f		Fullscreen, take a screenshot of the entire screen (done)
 #	-s		Save to file instead of the clipboard
 #	-r		Reuse previous rectangle selection.
 #where to save screenshots on linux? what format?
 #What to do for multiple monitors?
+#Can we use xprop (or similar) to have a window-select mode?
 
 F_OPT=0
 
