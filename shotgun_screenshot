@@ -3,34 +3,45 @@
 #	shotgun
 #	hacksaw
 #	xclip
+#	date
 
 #TODO:
 #	-f		Fullscreen, take a screenshot of the entire screen (done)
-#	-s		Save to file instead of the clipboard
+#	-s <dir>	Save to a file inside of the given directory (done)
+#			If named file already exists, outputs to FILENAME(1) instead of overwriting
 #	-r		Reuse previous rectangle selection.
-#where to save screenshots on linux? what format?
+#where to save screenshots on linux by default? what format?
 #What to do for multiple monitors?
 #Can we use xprop (or similar) to have a window-select mode?
 
 F_OPT=0
+S_OPT=0
+S_OUT_DIRECTORY=""
 
-while getopts "hf" OPTION; do
+while getopts "hfs:" OPTION; do
 	case $OPTION in
 		h) #display help
 			echo "Not implemented yet"
 			exit;;
 		f)
 			F_OPT=1;;
+		s)
+			S_OPT=1
+			S_OUT_DIRECTORY="$OPTARG";;
 		\?) #invalid options
-			echo "Error: invalid option: " "$OPTION"
-			exit;;
+			exit 1;;
 	esac
 done
 
+
+RECT_SELECT=""
 if [ $F_OPT -eq 0 ]; then
-	selection=$(hacksaw -f "-i %i -g %g" 2> /dev/null) 
-else
-	selection=""
+	RECT_SELECT=$(hacksaw -f "-i %i -g %g" 2> /dev/null)
 fi
 
-shotgun $selection - | xclip -t 'image/png' -selection clipboard
+if [ $S_OPT -eq 0 ]; then
+	shotgun $RECT_SELECT - | xclip -t 'image/png' -selection clipboard
+else
+	FILENAME=$(date +%Y-%m-%d_%H:%M:%S:%N)
+	shotgun $RECT_SELECT "${S_OUT_DIRECTORY}/${FILENAME}.png"
+fi
