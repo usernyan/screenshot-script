@@ -9,6 +9,8 @@
 #	-f		Fullscreen, take a screenshot of the entire screen (done)
 #	-s <dir>	Save to a file inside of the given directory (done)
 #			If named file already exists, outputs to FILENAME(1) instead of overwriting
+#	-n <name>	Manually set the file's name instead of using the date commmand (done)
+#				ignored if -s is not specified.
 #	-r		Reuse previous rectangle selection.
 #where to save screenshots on linux by default? what format?
 #What to do for multiple monitors?
@@ -17,8 +19,10 @@
 F_OPT=0
 S_OPT=0
 S_OUT_DIRECTORY=""
+N_OPT=0
+N_FILENAME=""
 
-while getopts "hfs:" OPTION; do
+while getopts "hfs:n:" OPTION; do
 	case $OPTION in
 		h) #display help
 			echo "Not implemented yet"
@@ -28,6 +32,9 @@ while getopts "hfs:" OPTION; do
 		s)
 			S_OPT=1
 			S_OUT_DIRECTORY="$OPTARG";;
+		n)
+			N_OPT=1
+			N_FILENAME="$OPTARG";;
 		\?) #invalid options
 			exit 1;;
 	esac
@@ -42,6 +49,10 @@ fi
 if [ $S_OPT -eq 0 ]; then
 	shotgun $RECT_SELECT - | xclip -t 'image/png' -selection clipboard
 else
-	FILENAME=$(date +%Y-%m-%d_%H:%M:%S:%N)
+	if [ $N_OPT -eq 1 ]; then
+		FILENAME="$N_FILENAME"
+	else
+		FILENAME=$(date +%Y-%m-%d_%H:%M:%S:%N)
+	fi
 	shotgun $RECT_SELECT "${S_OUT_DIRECTORY}/${FILENAME}.png"
 fi
