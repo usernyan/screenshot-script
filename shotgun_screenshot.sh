@@ -14,7 +14,9 @@
 #	-p		Reuse previous rectangle selection.
 #where to save screenshots on linux by default? what format?
 #What to do for multiple monitors?
-#Can we use xprop (or similar) to have a window-select mode?
+#Can we use ffmpeg to record a section of the screen?
+#What program can we use as a menu to visually crop screenshots after they're taken
+#where to store temp files to be reused on the next script run? (planned -p option)
 
 R_OPT=0
 S_OPT=0
