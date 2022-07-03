@@ -6,29 +6,29 @@
 #	date
 
 #TODO:
-#	-f		Fullscreen, take a screenshot of the entire screen (done)
+#	-r		Rectangle select, open hacksaw and click a window or draw a rectangle(done)
 #	-s <dir>	Save to a file inside of the given directory (done)
 #			If named file already exists, outputs to FILENAME(1) instead of overwriting
 #	-n <name>	Manually set the file's name instead of using the date commmand (done)
 #				ignored if -s is not specified.
-#	-r		Reuse previous rectangle selection.
+#	-p		Reuse previous rectangle selection.
 #where to save screenshots on linux by default? what format?
 #What to do for multiple monitors?
 #Can we use xprop (or similar) to have a window-select mode?
 
-F_OPT=0
+R_OPT=0
 S_OPT=0
 S_OUT_DIRECTORY=""
 N_OPT=0
 N_FILENAME=""
 
-while getopts "hfs:n:" OPTION; do
+while getopts "hrs:n:" OPTION; do
 	case $OPTION in
 		h) #display help
 			echo "Not implemented yet"
 			exit;;
-		f)
-			F_OPT=1;;
+		r)
+			R_OPT=1;;
 		s)
 			S_OPT=1
 			S_OUT_DIRECTORY="$OPTARG";;
@@ -40,9 +40,8 @@ while getopts "hfs:n:" OPTION; do
 	esac
 done
 
-
 RECT_SELECT=""
-if [ $F_OPT -eq 0 ]; then
+if [ $R_OPT -eq 1 ]; then
 	RECT_SELECT=$(hacksaw -f "-i %i -g %g" 2> /dev/null)
 fi
 
