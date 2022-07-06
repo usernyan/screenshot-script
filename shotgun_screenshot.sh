@@ -18,6 +18,7 @@
 #What program can we use as a menu to visually crop screenshots after they're taken
 #where to store temp files to be reused on the next script run? (planned -p option)
 
+INVALID_OPT=0
 R_OPT=0
 S_OPT=0
 S_OUT_DIRECTORY=""
@@ -38,9 +39,13 @@ while getopts "hrs:n:" OPTION; do
 			N_OPT=1
 			N_FILENAME="$OPTARG";;
 		\?) #invalid options
-			exit 1;;
+			INVALID_OPT=1;;
 	esac
 done
+
+if [ $INVALID_OPT -eq 1 ]; then
+	exit 1
+fi
 
 RECT_SELECT=""
 if [ $R_OPT -eq 1 ]; then
