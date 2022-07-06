@@ -60,5 +60,5 @@ else
 	else
 		FILENAME=$(date +%Y-%m-%d_%H:%M:%S:%N)
 	fi
-	shotgun $RECT_SELECT "${S_OUT_DIRECTORY}/${FILENAME}.png"
+	shotgun $RECT_SELECT -- "${S_OUT_DIRECTORY}/${FILENAME}.png"
 fi
