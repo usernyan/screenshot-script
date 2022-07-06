@@ -58,7 +58,7 @@ else
 	if [ $N_OPT -eq 1 ]; then
 		FILENAME="$N_FILENAME"
 	else
-		FILENAME=$(date +%Y-%m-%d_%H:%M:%S:%N)
+		FILENAME=$(date +%Y-%m-%d_%H:%M:%S:%N)".png"
 	fi
-	shotgun $RECT_SELECT -- "${S_OUT_DIRECTORY}/${FILENAME}.png"
+	shotgun $RECT_SELECT -- "${S_OUT_DIRECTORY}/${FILENAME}"
 fi
