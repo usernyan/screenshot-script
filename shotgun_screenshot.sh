@@ -1,4 +1,4 @@
-#!/bin/sh -e
+#!/bin/sh
 #dependencies:
 #	shotgun
 #	hacksaw
@@ -47,18 +47,24 @@ if [ $INVALID_OPT -eq 1 ]; then
 	exit 1
 fi
 
-RECT_SELECT=""
+SCREEN_SELECTION=
+WIN_ID=
+RECT_DIM=
 if [ $R_OPT -eq 1 ]; then
-	RECT_SELECT=$(hacksaw -f "-i %i -g %g" 2> /dev/null)
+	SCREEN_SELECTION="$(hacksaw -f "%i %g" 2> /dev/null)"
+	WIN_ID="$(printf '%s' "$SCREEN_SELECTION" | cut -d' ' -f1)"
+	RECT_DIM="$(printf '%s' "$SCREEN_SELECTION" | cut -d' ' -f2)"
 fi
 
 if [ $S_OPT -eq 0 ]; then
-	shotgun $RECT_SELECT - | xclip -t 'image/png' -selection clipboard
+	shotgun ${WIN_ID:+-i "$WIN_ID"} ${RECT_DIM:+-g "$RECT_DIM"} \
+	- | xclip -t 'image/png' -selection clipboard
 else
 	if [ $N_OPT -eq 1 ]; then
 		FILENAME="$N_FILENAME"
 	else
 		FILENAME=$(date +%Y-%m-%d_%H:%M:%S:%N)".png"
 	fi
-	shotgun $RECT_SELECT -- "${S_OUT_DIRECTORY}/${FILENAME}"
+	shotgun ${WIN_ID:+-i "$WIN_ID"} ${RECT_DIM:+-g "$RECT_DIM"} \
+	-- "${S_OUT_DIRECTORY}/${FILENAME}"
 fi
