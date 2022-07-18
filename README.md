@@ -5,4 +5,4 @@ Requires [shotgun](https://github.com/neXromancers/shotgun) and [hacksaw](https:
 ## Options:
 - -r &emsp;&emsp; Rectangle select, open hacksaw and click a window or draw a rectangle
 - -s \<dir\> &emsp;&emsp; Save the screenshot in the given directory.
-- -n \<name\> &emsp;&emsp; Save the screenshot with given filename. Ignored if -s not specified.
+- -n \<name\> &emsp;&emsp; Save the screenshot with the given filename. Ignored if -s not specified.
