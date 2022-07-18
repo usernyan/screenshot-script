@@ -1,7 +1,8 @@
-# screenshot-script
+# shotgun-screenshot
 A screenshot script for use on my personal Arch Linux setup.
+Requires [shotgun](https://github.com/neXromancers/shotgun) and [hacksaw](https://github.com/neXromancers/hacksaw)
 
 ## Options:
-- -r  &nbsp;&nbsp;&nbsp;&nbsp; Rectangle select, open hacksaw and click a window or draw a rectangle
-- -s \<dir\> &nbsp;&nbsp;&nbsp;&nbsp; Save the screenshot in the given directory.
-- -n \<name\>&nbsp;&nbsp;&nbsp;&nbsp; Save the screenshot with given filename. Ignored if -s not specified.
+- -r &emsp;&emsp; Rectangle select, open hacksaw and click a window or draw a rectangle
+- -s \<dir\> &emsp;&emsp; Save the screenshot in the given directory.
+- -n \<name\> &emsp;&emsp; Save the screenshot with given filename. Ignored if -s not specified.
