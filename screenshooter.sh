@@ -56,8 +56,22 @@ fi
 
 #Main
 
+if [ "$SEL_TYPE" = "rect" ]; then
+	SELECTION="$(hacksaw -f "%i %g" 2> /dev/null)"
+	WIN_ID="$(printf '%s' "$SELECTION" | cut -d' ' -f1)"
+	RECT_AREA="$(printf '%s' "$SELECTION" | cut -d' ' -f2)"
+fi
 
 
-
-
-
+if [ "$S_OPT" -eq 0 ]; then
+	shotgun ${WIN_ID:+-i "$WIN_ID"} ${RECT_AREA:+-g "$RECT_AREA"} \
+	- | xclip -t 'image/png' -selection clipboard
+else
+	if [ "$N_OPT" -eq 1 ]; then
+		FILENAME="$OUT_FILE"
+	else
+		FILENAME=$(date +%Y-%m-%d_%H:%M:%S:%N)".png"
+	fi
+	shotgun ${WIN_ID:+-i "$WIN_ID"} ${RECT_AREA:+-g "$RECT_AREA"} \
+	-- "${OUT_DIR:-.}/${FILENAME}"
+fi
