@@ -28,7 +28,20 @@ OUT_FILE=""
 while getopts "hl:s:n:" OPTION; do
 	case "$OPTION" in
 		h) #display help
-			echo "Not implemented yet."
+			echo "A screenshot-taking script."
+			echo
+			echo "Syntax: screenshot-script [-l (full|rect|focus)] [-s <dir>] [-n <name>]"
+			echo "options:"
+			echo "-l (full|rect|focus)"
+			echo "    Choose selection type."
+			echo "    full:    Fullscreen"
+			echo "    rect:    Rectangle selection"
+			echo "    focus:   The focused window"
+			echo "-s <dir>"
+			echo "    Save the screenshot to a file in <dir>."
+			echo "-n <name>"
+			echo "    Save the screenshot with the filename <name>. Requires -s"
+			echo
 			exit;;
 		l) #selection type
 			SEL_TYPE=$OPTARG
