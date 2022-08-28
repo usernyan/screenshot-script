@@ -1,10 +1,10 @@
 #!/bin/sh
 #dependencies:
-#	shotgun
-#	hacksaw
-#	xclip
-#	date
-#	xprop
+#	shotgun (for taking the screenshot)
+#	hacksaw (for rectangle selection)
+#	xclip (for copying to clipboard)
+#	date (for default filenames)
+#	xprop (for getting the focused window's id)
 
 #options:
 #	-l <selection_type>	The type of selection to make,
