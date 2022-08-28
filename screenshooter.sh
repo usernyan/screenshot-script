@@ -4,6 +4,7 @@
 #	hacksaw
 #	xclip
 #	date
+#	xprop
 
 #options:
 #	-l <selection_type>	The type of selection to make,
@@ -62,6 +63,10 @@ if [ "$SEL_TYPE" = "rect" ]; then
 	RECT_AREA="$(printf '%s' "$SELECTION" | cut -d' ' -f2)"
 fi
 
+if [ "$SEL_TYPE" = "focus" ]; then
+	#This might rely on the window manager to set this property.
+	WIN_ID="$(xprop -root _NET_ACTIVE_WINDOW | cut -d ' ' -f 5)"
+fi
 
 if [ "$S_OPT" -eq 0 ]; then
 	shotgun ${WIN_ID:+-i "$WIN_ID"} ${RECT_AREA:+-g "$RECT_AREA"} \
