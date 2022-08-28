@@ -32,9 +32,12 @@ while getopts "hl:s:n:" OPTION; do
 			exit;;
 		l) #selection type
 			SEL_TYPE=$OPTARG
-			if ! printf %s "$SEL_TYPE" | grep -F -e "full" -e "rect" -e "focus" > /dev/null; then
-				INVALID_SEL_TYPE=1
-			fi;;
+			case "$SEL_TYPE" in
+				full|rect|focus)
+					;;
+				*)
+					INVALID_SEL_TYPE=1;;
+			esac;;
 		s)
 			S_OPT=1;
 			OUT_DIR="$OPTARG";;
