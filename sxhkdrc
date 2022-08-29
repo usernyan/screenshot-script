@@ -1,0 +1,17 @@
+
+###screenshot-script###
+
+# Keyboard shortcut example
+# Append this to your sxhkdrc (the config file for simple x hotkey daemon)
+# printsrc by itself takes a fullscreen screenshot,
+# + shift takes one with rectangle select
+# + ctrl takes one of the focused window
+# Combine any of those with
+#     + super (a.k.a. windows key)
+#     to save to ~/Pictures/screenshots instead of the clipboard.
+
+Print + {_,shift,ctrl} + {_,super}
+	shot -l {full ,rect ,focus }{'',-s ~/Pictures/screenshots }
+
+###screenshot-script###
+
