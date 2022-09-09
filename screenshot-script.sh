@@ -6,13 +6,6 @@
 #	date (for default filenames)
 #	xprop (for getting the focused window's id)
 
-#options:
-#	-l <selection_type>	The type of selection to make,
-#				Can be full (default), rect, or focus
-#				(planned: prev_rect, prev_type)
-#	-s <directory>		Save to a file in the given directory
-#	-n <file_name>		Set the filename saved by -s
-
 INVALID_OPT=0
 INVALID_SEL_TYPE=0
 
