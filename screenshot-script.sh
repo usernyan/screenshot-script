@@ -60,7 +60,7 @@ if [ $INVALID_OPT -eq 1 ]; then
 fi
 
 if [ $INVALID_SEL_TYPE -eq 1 ]; then
-	printf "Invalid selection type: %s\n" "$SEL_TYPE"
+	printf "Invalid selection type: %s\n" "$SEL_TYPE" >&2
 	exit 1
 fi
 
