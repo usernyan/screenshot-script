@@ -82,6 +82,15 @@ if [ "$SEL_TYPE" = "focus" ]; then
 	WIN_ID="$(xprop -root _NET_ACTIVE_WINDOW | cut -d ' ' -f 5)"
 fi
 
+if [ "$SEL_TYPE" = "rect_in_win" ]; then
+	if ! WIN_ID="$(hacksaw -f "%i" 2> /dev/null)"; then
+		exit;
+	fi
+	if ! RECT_AREA="$(hacksaw -f "%g" 2> /dev/null)"; then
+		exit;
+	fi
+fi
+
 if [ "$S_OPT" -eq 0 ]; then
 	shotgun ${WIN_ID:+-i "$WIN_ID"} ${RECT_AREA:+-g "$RECT_AREA"} \
 	- | xclip -t 'image/png' -selection clipboard
