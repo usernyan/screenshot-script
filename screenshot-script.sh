@@ -39,7 +39,7 @@ while getopts "hl:s:n:" OPTION; do
 		l) #selection type
 			SEL_TYPE=$OPTARG
 			case "$SEL_TYPE" in
-				full|rect|focus)
+				full|rect|focus|rect_in_win)
 					;;
 				*)
 					INVALID_SEL_TYPE=1;;
