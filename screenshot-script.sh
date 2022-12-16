@@ -68,9 +68,7 @@ fi
 SELECTION_CANCELLED=0
 
 if [ "$SEL_TYPE" = "rect" ]; then
-	SELECTION="$(hacksaw -f "%i %g" 2> /dev/null)"
-	SELECTION_CANCELLED="$?"
-	if [ "$SELECTION_CANCELLED" -ne 0 ]; then
+	if ! SELECTION="$(hacksaw -f "%i %g" 2> /dev/null)"; then
 		exit;
 	fi
 	WIN_ID="$(printf '%s' "$SELECTION" | cut -d' ' -f1)"
