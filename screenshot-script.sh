@@ -66,7 +66,6 @@ if [ $INVALID_SEL_TYPE -eq 1 ]; then
 fi
 
 #Main
-SELECTION_CANCELLED=0
 
 if [ "$SEL_TYPE" = "rect" ]; then
 	if ! SELECTION="$(hacksaw -f "%i %g" 2> /dev/null)"; then
