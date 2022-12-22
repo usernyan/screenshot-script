@@ -6,12 +6,13 @@
 # printsrc by itself takes a fullscreen screenshot,
 # + shift takes one with rectangle select
 # + ctrl takes one of the focused window
+# + alt takes one of a selected window with a rectangle select
 # Combine any of those with
 #     + super (a.k.a. windows key)
 #     to save to ~/Pictures/screenshots instead of the clipboard.
 
-Print + {_,shift,ctrl} + {_,super}
-	shot -l {full ,rect ,focus }{'',-s ~/Pictures/screenshots }
+Print + {_,shift,ctrl,alt} + {_,super}
+	shot -l {full,rect,focus,rect_in_win} {'',-s ~/Pictures/screenshots}
 
 ###screenshot-script###
 
