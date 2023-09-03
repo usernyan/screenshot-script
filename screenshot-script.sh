@@ -98,6 +98,9 @@ else
 	else
 		FILENAME=$(date +%Y-%m-%d_%H:%M:%S:%N)".png"
 	fi
+	if [ -n "$OUT_DIR" ]; then
+		mkdir -p "$OUT_DIR"
+	fi
 	shotgun ${WIN_ID:+-i "$WIN_ID"} ${RECT_AREA:+-g "$RECT_AREA"} \
 	-- "${OUT_DIR:-.}/${FILENAME}"
 fi
